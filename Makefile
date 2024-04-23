@@ -2,7 +2,7 @@
 build: templ
 	# '@' is used to suppress the command from being printed to the terminal
 	# 'go build -o bin/app' builds the app and outputs the executable to bin/app
-	@go build -o ./tmp/main ./cmd/main.go
+	@go build -o ./tmp/app ./app/app.go
 
 # run is a target that depends on the tailwindcss, templ and build targets
 # it executes the app binary produced by the build target

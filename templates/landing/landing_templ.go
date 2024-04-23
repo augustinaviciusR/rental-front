@@ -96,7 +96,7 @@ func Actions() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"actions\" class=\"flex flex-col md:flex-row gap-4 mt-8\"><button hx-get=\"/inquiry\" hx-target=\"#actions\" hx-swap=\"beforeend\" class=\"py-2 px-6 bg-yellow-600 text-xl md:text-2xl lg:text-3xl font-semibold rounded-full text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-600\">Pateikite užklausą!</button> <a href=\"tel:+37067640030\" class=\"py-2 px-6 bg-yellow-600 text-xl md:text-2xl lg:text-3xl font-semibold rounded-full text-white text-decoration-none flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-600\"><span class=\"md:inline\">+370-676-40030</span></a></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"actions\" class=\"flex flex-col md:flex-row gap-4 mt-8\"><button hx-get=\"/inquiry\" hx-target=\"#actions\" hx-swap=\"beforeend\" class=\"py-2 px-6 bg-yellow-600 text-xl md:text-2xl lg:text-3xl font-semibold rounded-full text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-600\">Pateikite užklausą</button> <a href=\"tel:+37067640030\" class=\"py-2 px-6 bg-yellow-600 text-xl md:text-2xl lg:text-3xl font-semibold rounded-full text-white text-decoration-none flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-600\"><span class=\"md:inline\">+370-676-40030</span></a></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
