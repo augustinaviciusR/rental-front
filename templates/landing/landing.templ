@@ -1,34 +1,48 @@
-package templates
+package landing
 
-import common "github.com/edwincarlflores/go-htmx/templates/common"
+import common "github.com/Pervadinti/rental-front/templates/common"
 
 templ Landing() {
-	<div>
-		<p>What's your name?</p>
-		<form
-      class="flex flex-row space-x-3"
-      hx-post="/hello"
-      hx-swap="innerHTML"
-			hx-target="#content"
-    >
-      <input type="text" name="name" class="border border-black" />
-      <button type="submit">Send</button>
-    </form>
+	<div class="w-screen h-screen relative">
+		<img src="/static/hero.jpg" alt="hero_image" class="absolute h-full w-full object-cover"/>
+		<div class="absolute inset-0 bg-black bg-opacity-50"></div>
+		<div class="absolute flex flex-col justify-center items-center inset-0 text-white text-center px-6">
+			<h1 class="text-4xl font-bold leading-snug tracking-tight text-white lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
+				<span>Santechnikos Darbai</span>
+				<br/>
+				<span>Technikos Nuoma</span>
+				<br/>
+				<span>Grunto Pervežimas</span>
+			</h1>
+			<p class="mt-6 text-xl md:text-2xl lg:text-3xl">
+				Naršykite po mūsų statybos įrangos ir pąslaugų pasiūlymus, kurias galite nuomotis ir užsisakyti šiandien!
+			</p>
+			@Actions()
+		</div>
 	</div>
-	<div id="content"></div>
 }
 
-templ HelloName(name string) {
-	if name == "" {
-		<p class="text-red-300">Please enter your name</p>
-	} else {
-		<p class="text-4xl font-bold text-emerald-300">Hello { name }!</p>
-	}
-	
-}
-
-templ LandingPage(){
+templ LandingPage() {
 	@common.Page("Landing") {
 		@Landing()
 	}
+}
+
+templ Actions() {
+	<div id="actions" class="flex flex-col md:flex-row gap-4 mt-8">
+		<button
+			hx-get="/inquiry"
+			hx-target="#actions"
+			hx-swap="beforeend"
+			class="py-2 px-6 bg-yellow-600 text-xl md:text-2xl lg:text-3xl font-semibold rounded-full text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-600"
+		>
+			Pateikite užklausą!
+		</button>
+		<a
+			href="tel:+37067640030"
+			class="py-2 px-6 bg-yellow-600 text-xl md:text-2xl lg:text-3xl font-semibold rounded-full text-white text-decoration-none flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-yellow-400 hover:bg-yellow-600"
+		>
+			<span class="md:inline">+370-676-40030</span>
+		</a>
+	</div>
 }

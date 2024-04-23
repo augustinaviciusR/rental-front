@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/edwincarlflores/go-htmx/app"
+	"github.com/Pervadinti/rental-front/app"
 )
 
 func main() {

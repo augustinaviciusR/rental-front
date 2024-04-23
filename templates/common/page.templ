@@ -1,18 +1,19 @@
-package templates
+package common
 
 templ Page(pageName string) {
-	<html>
+	<html lang="en">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<title>{ pageName }</title>
+			<title>Meistras Ir Technika</title>
 			<script src="https://cdn.tailwindcss.com"></script>
-			<script src="/static/js/htmx.min.js"></script>
+			<script src="https://unpkg.com/htmx.org@1.9.11"></script>
 		</head>
+		<header class="absolute inset-x-0 top-0 z-50"></header>
 		<body>
-      <div class="flex flex-col h-screen w-full justify-center items-center">
-			  { children... }
-      </div>
+			<div class="flex flex-col w-full justify-center items-center">
+				{ children... }
+			</div>
 		</body>
 	</html>
 }
