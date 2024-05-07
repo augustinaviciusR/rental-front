@@ -24,3 +24,4 @@ templ:
 	@templ fmt templates/landing/
 	@templ fmt templates/inquiry_form/
 	@templ fmt templates/common/
+	@templ fmt templates/gdpr/

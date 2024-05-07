@@ -1,0 +1,89 @@
+package gdpr
+
+import common "github.com/Pervadinti/rental-front/templates/common"
+
+templ GdprPopup() {
+	<div id="gdprConsent" class="fixed z-10 inset-0 overflow-y-auto">
+		<div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+			<div class="fixed inset-0 transition-opacity" aria-hidden="true">
+				<div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+			</div>
+			<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+			<div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+				<h2 class="text-xl font-semibold text-gray-800 p-6 bg-gray-100 border-b border-gray-200">Šioje svetainėje naudojami slapukai</h2>
+				<p class="p-6 text-gray-700">Naudojame slapukus, siekiant pateikti Jums pritaikytą informaciją apie mūsų paslaugas ir pagerinti interneto svetainės veikimą. Jei sutinkate, prašome paspausti mygtuką „Sutinku su visais slapukais“. Jei nenorite duoti sutikimo ir pageidaujate naudoti tik būtinuosius slapukus, prašome paspausti „Nesutinku (tik būtinieji slapukai)“. Jei norite pakeisti slapukų nustatymus, prašome paspausti „Slapukų nustatymai.</p>
+				<!-- add the close button here -->
+				<div class="p-6 bg-gray-100 border-t border-gray-200">
+					<button
+						id="acceptConsent"
+						class="float-right flex items-center justify-center w-32 h-10 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+						hx-post="/gdpr"
+						hx-swap="outerHTML"
+						hx-target="#gdprConsent"
+						hx-trigger="click"
+						hx-success="setGDPRCookie(response)"
+					>
+						Sutinku su Butinais slapukais
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function setGDPRCookie(response) {
+			// Extract cookie from the response headers
+			var cookies = response.headers.get('Set-Cookie');
+			if (cookies) {
+			
+				// Split the cookies string and iterate over each cookie
+				cookies.split(';').forEach(function(cookie) {
+					// Extract the cookie name and value
+					var parts = cookie.split('=');
+					var name = parts.shift().trim();
+					var value = parts.join('=');
+
+					// Set the cookie
+					document.cookie = name + '=' + value + '; path=/; expires=Thu, 01 Jan 2026 00:00:00 UTC;';
+				});
+			}
+		}
+	</script>
+}
+
+templ GdprPopupPage() {
+	@common.Page("gdpr") {
+		@GdprPopup()
+	}
+}
+
+templ PrivacyAndUsageTerms() {
+	<div id="privacyDropdown">
+		<button id="toggleDropdown" class="text-gray-700 px-4 py-2 text-lg font-semibold bg-gray-200 rounded-md shadow-md hover:bg-gray-300 focus:outline-none focus:ring focus:ring-gray-400">
+			Privatumo informacija
+		</button>
+		<div id="privacyInfo" class="absolute z-10 hidden bg-white rounded-md shadow-md mt-2">
+			<div id="tikslas" class="bg-gray-50 p-4 rounded mt-2">
+				<h3 class="text-gray-700 text-lg font-semibold mb-2">Tikslas, dėl kurio renkame jūsų asmens duomenis</h3>
+				<p class="text-gray-700">Renkiame jūsų asmens duomenis, tokius kaip vardas, el. paštas ir telefono numeris, tik su tikslu atsakyti į jūsų užklausas ir teikti klientų aptarnavimą.</p>
+			</div>
+			<div id="naudojimas" class="bg-gray-50 p-4 rounded mt-2">
+				<h3 class="text-gray-700 text-lg font-semibold mb-2">Kaip naudojame jūsų duomenis</h3>
+				<p class="text-gray-700">Jūsų asmens duomenys bus naudojami tik bendravimui su jumis dėl jūsų užklausų, pageidavimų ar bet kokių kitų mūsų paslaugų susijusių klausimų.</p>
+			</div>
+			<div id="dalijimasis" class="bg-gray-50 p-4 rounded mt-2">
+				<h3 class="text-gray-700 text-lg font-semibold mb-2">Ar dalijamės jūsų duomenimis su trečiosiomis šalimis</h3>
+				<p class="text-gray-700">Mes nesidalijame jūsų asmens duomenimis su trečiosiomis šalimis, nebent tai būtų būtina jūsų užsakymo vykdymui arba reikalavimui pagal įstatymus.</p>
+			</div>
+			<div id="teises" class="bg-gray-50 p-4 rounded mt-2">
+				<h3 class="text-gray-700 text-lg font-semibold mb-2">Jūsų teisės pagal GDPR</h3>
+				<p class="text-gray-700">Remiantis GDPR, jūs turite teisę gauti prieigą prie savo asmens duomenų, juos ištaisyti ir ištrinti. Jei norite pasinaudoti šiomis teisėmis, prašome susisiekti su mumis.</p>
+			</div>
+		</div>
+	</div>
+	<script>
+        document.getElementById('toggleDropdown').addEventListener('click', function () {
+            var dropdown = document.getElementById('privacyInfo');
+            dropdown.classList.toggle('hidden');
+        });
+    </script>
+}
